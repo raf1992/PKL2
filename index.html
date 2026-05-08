@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data PKL</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial;
+        }
+
+        body{
+            background:#f5f7fb;
+            padding:40px;
+        }
+
+        .container{
+            max-width:1000px;
+            margin:auto;
+        }
+
+        .title{
+            margin-bottom:30px;
+        }
+
+        .title h1{
+            font-size:32px;
+            margin-bottom:8px;
+        }
+
+        .title p{
+            color:gray;
+        }
+
+        .card{
+
+            background:white;
+            border-radius:15px;
+            padding:25px;
+
+            box-shadow:
+            0 5px 20px rgba(0,0,0,0.08);
+
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+        }
+
+        th{
+            text-align:left;
+            padding:15px;
+            background:#f8f9fa;
+        }
+
+        td{
+            padding:15px;
+            border-top:1px solid #eee;
+        }
+
+        tr:hover{
+            background:#f5f7ff;
+        }
+
+        .badge{
+
+            display:inline-block;
+
+            background:#e8f5e9;
+
+            color:green;
+
+            padding:6px 12px;
+
+            border-radius:20px;
+
+            font-size:14px;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="title">
+
+        <h1>Data Siswa PKL</h1>
+
+        <p>Monitoring siswa praktik kerja lapangan</p>
+
+    </div>
+
+
+    <div class="card">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Nama</th>
+                    <th>Perusahaan</th>
+                    <th>Pembimbing</th>
+                    <th>Status</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="hasil"></tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+fetch("http://localhost:3000/siswa")
+
+.then(res=>res.json())
+
+.then(data=>{
+
+    let html = "";
+
+    data.forEach(item=>{
+
+        html += `
+
+            <tr>
+
+                <td>${item.nama}</td>
+
+                <td>${item.nama_perusahaan}</td>
+
+                <td>${item.nama_pembimbing}</td>
+
+                <td>
+                    <span class="badge">
+                        Aktif
+                    </span>
+                </td>
+
+            </tr>
+
+        `;
+
+    });
+
+    document.getElementById("hasil").innerHTML = html;
+
+});
+
+</script>
+
+
+</body>
+</html>
